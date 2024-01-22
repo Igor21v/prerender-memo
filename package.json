@@ -1,0 +1,29 @@
+{
+  "author": "igor21v",
+  "name": "prerender-memo",
+  "description": "Service to prerender Javascript rendered pages for SEO with caching and auto-updating the cache",
+  "version": "1.0.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Igor21v/prerender-memo"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "chrome-remote-interface": "^0.30.0",
+    "compression": "^1.7.4",
+    "express": "^4.17.1",
+    "he": "^1.2.0",
+    "uuid": "^8.3.2",
+    "valid-url": "^1.0.9",
+    "app-root-path": "^1.0.0",
+    "level-party": "^4.0.0",
+    "level-ttl": "^3.1.1"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=10"
+  }
+}

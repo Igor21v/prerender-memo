@@ -58,7 +58,9 @@ Uses a chrome install at a certain location. Prerender does not download Chrome 
 ```
 var prerender = require('./lib');
 
-server.options.ttl = 
+var server = prerender({
+    ttl: 3600000
+});
 
 server.start();
 ```

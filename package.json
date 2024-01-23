@@ -2,7 +2,7 @@
   "author": "igor21v",
   "name": "prerender-memo",
   "description": "Service to prerender Javascript rendered pages for SEO with caching and auto-updating the cache",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "repository": {
     "type": "git",

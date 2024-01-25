@@ -1,45 +1,47 @@
-Prerender-memo
-===========================
+# Prerender-memo
 
-Prerender-memo is a node server that uses Headless Chrome to render HTML of any web page. The Prerender server listens for an http request, takes the URL and loads it in Headless Chrome, waits for the page to finish loading by waiting for the network to be idle, and then returns your content. 
+Prerender-memo is a node server that uses Headless Chrome to render HTML of any web page. The Prerender server listens for an http request, takes the URL and loads it in Headless Chrome, waits for the page to finish loading by waiting for the network to be idle, and then returns your content.
 Each render results are cached.
 For the second and subsequent requests, the results are returned from the cache without rendering delays.
-
 
 ##### The quickest way to run your own prerender server:
 
 ```bash
-$ npm install prerender
+$ npm install prerender-memo
 ```
+
 ##### server.js
+
 ```js
-const prerender = require('prerender');
+const prerender = require("prerender-memo");
 const server = prerender();
 server.start();
 ```
+
 ##### test it:
+
 ```bash
 curl http://localhost:3000/render?url=https://www.example.com/
 ```
 
 Before running the pre-render in windows, run chrome on the command line:
+
 ```bash
-"C:/Program Files/Google/Chrome/Application/chrome.exe" --headless --remote-debugging-port=9222 
+"C:/Program Files/Google/Chrome/Application/chrome.exe" --headless --remote-debugging-port=9222
 ```
+
 "C:/Program Files/Google/Chrome/Application/chrome.exe" - is path to your brouser Chrome
 
-You can see an example of usage and nginx configuration in the  [repository](https://github.com/Igor21v/prerender).
+You can see an example of usage and nginx configuration in the [repository](https://github.com/Igor21v/prerender).
 
 You can also perform initial caching or cache refresh using a page crawling simple [script](https://github.com/Igor21v/autovisit-site.git) for browser.
 
 # Customization
 
-You can clone this repo and run `server.js` OR include prerender in your project with `npm install prerender --save` to create an express-like server with custom plugins.
-
-
 ## Options
 
 ### chromeLocation
+
 ```
 var prerender = require('./lib');
 
@@ -55,6 +57,7 @@ Uses a chrome install at a certain location. Prerender does not download Chrome 
 `Default: null`
 
 ### TTL
+
 ```
 var prerender = require('./lib');
 
@@ -64,12 +67,14 @@ var server = prerender({
 
 server.start();
 ```
+
 Time to live for items in the cache.
 If a page is deleted from your website, the page will be deleted from the cache after a specified time since the last rendering
 
 `Default: 2592000000 (6 month)`
 
 ### logRequests
+
 ```
 var prerender = require('./lib');
 
@@ -85,6 +90,7 @@ Causes the Prerender server to print out every request made represented by a `+`
 `Default: false`
 
 ### captureConsoleLog
+
 ```
 var prerender = require('./lib');
 
@@ -100,6 +106,7 @@ Prerender server will store all console logs into `pageLoadInfo.logEntries` for 
 `Default: false`
 
 ### pageDoneCheckInterval
+
 ```
 var prerender = require('./lib');
 
@@ -115,6 +122,7 @@ Number of milliseconds between the interval of checking whether the page is done
 `Default: 500`
 
 ### pageLoadTimeout
+
 ```
 var prerender = require('./lib');
 
@@ -130,6 +138,7 @@ Maximum number of milliseconds to wait while downloading the page, waiting for a
 `Default: 20000`
 
 ### waitAfterLastRequest
+
 ```
 var prerender = require('./lib');
 
@@ -145,6 +154,7 @@ Number of milliseconds to wait after the number of requests/ajax calls in flight
 `Default: 500`
 
 ### followRedirects
+
 ```
 var prerender = require('./lib');
 
@@ -184,6 +194,7 @@ You can use any of these plugins by modifying the `server.js` file
 If you want to only allow access to your Prerender server from authorized parties, enable the basic auth plugin.
 
 You will need to add the `BASIC_AUTH_USERNAME` and `BASIC_AUTH_PASSWORD` environment variables.
+
 ```
 export BASIC_AUTH_USERNAME=prerender
 export BASIC_AUTH_PASSWORD=test
@@ -211,14 +222,16 @@ If your Javascript routing has a catch-all for things like 404's, you can tell t
 Add these tags in the `<head>` of your page if you want to serve soft http headers. Note: Prerender will still send the HTML of the page. This just modifies the status code and headers being sent.
 
 Example: telling prerender to server this page as a 404
+
 ```html
-<meta name="prerender-status-code" content="404">
+<meta name="prerender-status-code" content="404" />
 ```
 
 Example: telling prerender to serve this page as a 302 redirect
+
 ```html
-<meta name="prerender-status-code" content="302">
-<meta name="prerender-header" content="Location: https://www.google.com">
+<meta name="prerender-status-code" content="302" />
+<meta name="prerender-header" content="Location: https://www.google.com" />
 ```
 
 ### whitelist

@@ -7,13 +7,13 @@ For the second and subsequent requests, the results are returned from the cache 
 ##### The quickest way to run your own prerender server:
 
 ```bash
-$ npm install prerender
+$ npm install prerender-memo
 ```
 
 ##### server.js
 
 ```js
-const prerender = require("prerender");
+const prerender = require("prerender-memo");
 const server = prerender();
 server.start();
 ```
@@ -37,8 +37,6 @@ You can see an example of usage and nginx configuration in the [repository](http
 You can also perform initial caching or cache refresh using a page crawling simple [script](https://github.com/Igor21v/autovisit-site.git) for browser.
 
 # Customization
-
-You can clone this repo and run `server.js` OR include prerender in your project with `npm install prerender --save` to create an express-like server with custom plugins.
 
 ## Options
 
